@@ -19,3 +19,6 @@ Step 3
 Run project
 
 `npm run dev`
+
+# Preview
+[![Preview](./media/image.png)]()

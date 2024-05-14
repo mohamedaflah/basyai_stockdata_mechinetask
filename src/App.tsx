@@ -26,8 +26,18 @@ function App() {
         },
       });
     }
-    setLoading(true);
     const formatedDate = format(date, "d-MMMM-yyyy");
+    if(stocks&&stocks.date==formatedDate){
+      return toast("Data already is there", {
+        icon: "↙",
+        style: {
+          borderRadius: "20px",
+          background: "#3e464dcf",
+          color: "#fff",
+        },
+      }); 
+    }
+    setLoading(true);
     fetch(`https://jsonmock.hackerrank.com/api/stocks?date=${formatedDate}`)
       .then((response) => response.json())
       .then((res) => {
