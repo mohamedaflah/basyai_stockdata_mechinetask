@@ -31,12 +31,14 @@ function App() {
     fetch(`https://jsonmock.hackerrank.com/api/stocks?date=${formatedDate}`)
       .then((response) => response.json())
       .then((res) => {
+        
         setStocks(res.data[0]);
+        setLoading(false);
       })
       .catch(() => {
+        setLoading(false);
         toast.error(`Something went wrong`);
       });
-    setLoading(false);
   };
   return (
     <main className="main_section">
@@ -57,10 +59,17 @@ function App() {
             Search
           </button>
         </div>
-        <div className="w-full mt-10 flex justify-center">
+        <div className="w-full mt-10 flex gap-2 justify-center">
+          {loading && (
+            <>
+              <div className="">
+                <Loader2 className="animate-spin  w-50" />
+              </div>
+            </>
+          )}
           {stocks ? (
             <>
-              <ul className="list-disc">
+              <ul className="list-disc" data-testid="stock-data">
                 <li>Open :{stocks?.open}</li>
                 <li>Close :{stocks?.close}</li>
                 <li>High :{stocks?.high}</li>
@@ -69,15 +78,7 @@ function App() {
             </>
           ) : (
             <>
-              {loading ? (
-                <>
-                  <div className="">
-                    <Loader2 className="animate-spin  w-50" />
-                  </div>
-                </>
-              ) : (
-                "No Result"
-              )}
+              <div data-testid="no-result">No Results Found</div>
             </>
           )}
         </div>
