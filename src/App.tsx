@@ -1,7 +1,7 @@
 import "./App.css";
 import { TopbarDarkBox } from "./components/custom/TopbarDarkBox";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { format } from "date-fns";
 
@@ -31,8 +31,7 @@ function App() {
     fetch(`https://jsonmock.hackerrank.com/api/stocks?date=${formatedDate}`)
       .then((response) => response.json())
       .then((res) => {
-        
-        setStocks(res.data[0]);
+        setStocks(res.data[0] ?? null);
         setLoading(false);
       })
       .catch(() => {
@@ -40,8 +39,9 @@ function App() {
         toast.error(`Something went wrong`);
       });
   };
+  const mainRef = useRef<HTMLDivElement>(null);
   return (
-    <main className="main_section">
+    <main className="main_section" ref={mainRef}>
       <div className="stockdata_topbar">
         <div className="topbar_center">
           <TopbarDarkBox />
@@ -53,7 +53,7 @@ function App() {
           <DatePicker date={date} setDate={setDate} />
           <button
             onClick={handleSearchClick}
-            className="h-full w-24 flex items-center justify-center font-semibold shadow-md text-white rounded-sm "
+            className="h-full w-24 flex items-center justify-center font-semibold shadow-md shadow-green-300 text-white rounded-sm "
             style={{ background: "var(--foregroundColor)" }}
           >
             Search
@@ -78,7 +78,7 @@ function App() {
             </>
           ) : (
             <>
-              <div data-testid="no-result">No Results Found</div>
+              {!loading && <div data-testid="no-result">No Results Found</div>}
             </>
           )}
         </div>

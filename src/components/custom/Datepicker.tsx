@@ -18,7 +18,7 @@ export function DatePicker({ date, setDate }: ChildProp) {
         <Button
           variant={"outline"}
           className={cn(
-            "w-[280px] shadow-inner bg-[#f3f5f5] h-full justify-start text-left font-normal",
+            "w-[280px] shadow-inner bg-[#f3f5f5] h-full justify-start text-left font-normal ",
             !date && "text-muted-foreground"
           )}
         >
