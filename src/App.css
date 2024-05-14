@@ -56,3 +56,11 @@
     height: 28px;
     background: var(--commongreen);
 }
+.rdp-caption_dropdowns {
+  display: flex;
+  gap: 6px;
+  outline: none;
+}
+#react-day-picker-2,.rdp-vhidden{
+  display: none;
+}
