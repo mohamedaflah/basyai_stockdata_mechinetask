@@ -1,6 +1,9 @@
 # Basyai stock api mechine task
 
-Setup project
+[![Preview](./media/image.png)]()
+
+# Setup project
+
 
 Step 1
 
@@ -19,6 +22,3 @@ Step 3
 Run project
 
 `npm run dev`
-
-# Preview
-[![Preview](./media/image.png)]()
